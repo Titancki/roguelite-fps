@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr6n75ne30x2a"]
+
+[ext_resource type="PackedScene" uid="uid://2yvvnxidt4wh" path="res://rooms/room_1.tscn" id="1_btmex"]
+[ext_resource type="Texture2D" uid="uid://dw2m21dyvuhsi" path="res://assets/sky_seamless_texture_5885.jpg" id="1_qmvc1"]
+[ext_resource type="PackedScene" uid="uid://ckrrkret35qkt" path="res://entities/player/player.tscn" id="2_sy2bp"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_v6xh6"]
+panorama = ExtResource("1_qmvc1")
+
+[sub_resource type="Sky" id="Sky_h4q0y"]
+sky_material = SubResource("PanoramaSkyMaterial_v6xh6")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_pe18y"]
+background_mode = 5
+background_color = Color(0.22, 0.22, 0.22, 1)
+sky = SubResource("Sky_h4q0y")
+ambient_light_color = Color(0.154876, 0.154876, 0.154876, 1)
+fog_light_color = Color(0.11666, 0.130722, 0.15283, 1)
+fog_sun_scatter = 0.06
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0184
+volumetric_fog_emission = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Game" type="Node"]
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Rooms" type="Node3D" parent="Level"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level/Rooms"]
+environment = SubResource("Environment_pe18y")
+
+[node name="Room1" parent="Level/Rooms" instance=ExtResource("1_btmex")]
+
+[node name="Room2" parent="Level/Rooms" instance=ExtResource("1_btmex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
+[node name="Room3" parent="Level/Rooms" instance=ExtResource("1_btmex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 0)
+
+[node name="Player" parent="Level" instance=ExtResource("2_sy2bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.99546, 0.140067, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+autoplay = true

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://boxkdh6xwm7kk"]
+
+[ext_resource type="Script" path="res://weapons/beam_3d.gd" id="1_62jaq"]
+[ext_resource type="Shader" path="res://weapons/beam.gdshader" id="2_uv0xy"]
+
+[sub_resource type="Curve3D" id="Curve3D_symej"]
+bake_interval = 100.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.04678, 1.12748, -0.597449, 0, 0, 0, 0, 0, 0, -0.904099, 1.48055, -1.48868),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnau5"]
+render_priority = 0
+shader = ExtResource("2_uv0xy")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = 1.0
+shader_parameter/core_size = 1.0
+shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[node name="Beam3D" type="Node3D"]
+script = ExtResource("1_62jaq")
+
+[node name="Start_position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04678, 1.12748, -0.597449)
+
+[node name="End_position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.904099, 1.48055, -1.48868)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_symej")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(-0.015, -0.015, -0.015, 0.015, 0.015, 0.015, 0.015, -0.015)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 1
+path_interval = 0.1
+path_simplify_angle = 0.0
+path_rotation = 1
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("ShaderMaterial_pnau5")

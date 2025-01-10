@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://jb0blj2v2ydw"]
+
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_legaj"]
+[ext_resource type="PackedScene" uid="uid://digrrb7bcwpkd" path="res://weapons/projectile/default projectile.tscn" id="1_t0h6l"]
+
+[resource]
+script = ExtResource("1_legaj")
+name = "Launcher"
+range = 10.0
+damage = 10
+recoil_strength = 0.0
+recoil_duration = 0.2
+reload_duration = 0.5
+max_ammo = 3
+shot_duration = 0.05
+is_melee = false
+is_projectile = true
+projectile_scene = ExtResource("1_t0h6l")
+projectile_lifetime = 0.5
+projectile_speed = 10.0
+is_beam = false
+recharge_rate = 1
+is_full_auto = false
+spread_strength = 0.0
+spread_speed = 5.0
+decal_size = 0.05
