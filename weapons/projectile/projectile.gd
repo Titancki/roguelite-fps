@@ -16,5 +16,5 @@ func _process(delta: float) -> void:
 		queue_free()  # Remove the projectile when its lifetime ends
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	queue_free()

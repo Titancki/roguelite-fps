@@ -23,6 +23,7 @@ func _ready() -> void:
 	current_weapon = weapon_inventory.weapon_list[0]  # Load an example weapon
 	current_gun_ammo = current_weapon.max_ammo
 
+
 func _physics_process(delta: float) -> void:
 	if $UI.is_paused:
 		return  # Don't process movement or other gameplay logic when paused
@@ -66,9 +67,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("scroll_up"):
 		current_weapon = weapon_inventory.weapon_list[(weapon_inventory.weapon_list.find(current_weapon) + 1) % weapon_count]
 		current_gun_ammo = current_weapon.max_ammo
+		$UI.scroll_weapon_ui()
 	elif Input.is_action_just_pressed("scroll_down"):
 		current_weapon = weapon_inventory.weapon_list[(weapon_inventory.weapon_list.find(current_weapon) - 1) % weapon_count]
 		current_gun_ammo = current_weapon.max_ammo
+		$UI.scroll_weapon_ui()
 		
 func _input(event):
 	if event is InputEventMouseMotion and not $UI.is_paused:
@@ -99,4 +102,3 @@ func movemement(delta:float) -> void:
 	move_and_slide()
 	
 	camera.rotation += camera_recoil_offset
-		

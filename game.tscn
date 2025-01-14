@@ -1,11 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://dr6n75ne30x2a"]
 
 [ext_resource type="PackedScene" uid="uid://2yvvnxidt4wh" path="res://rooms/room_1.tscn" id="1_btmex"]
-[ext_resource type="Texture2D" uid="uid://dw2m21dyvuhsi" path="res://assets/sky_seamless_texture_5885.jpg" id="1_qmvc1"]
 [ext_resource type="PackedScene" uid="uid://ckrrkret35qkt" path="res://entities/player/player.tscn" id="2_sy2bp"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbndb"]
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_v6xh6"]
-panorama = ExtResource("1_qmvc1")
+panorama = SubResource("CompressedTexture2D_jbndb")
 
 [sub_resource type="Sky" id="Sky_h4q0y"]
 sky_material = SubResource("PanoramaSkyMaterial_v6xh6")

@@ -1,16 +1,16 @@
-[gd_scene load_steps=52 format=3 uid="uid://ckrrkret35qkt"]
+[gd_scene load_steps=54 format=3 uid="uid://ckrrkret35qkt"]
 
 [ext_resource type="Texture2D" uid="uid://tkcwi2vx0oph" path="res://assets/sprites/crosshair102.png" id="1_fqpx8"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_h3c4q"]
-[ext_resource type="Texture2D" uid="uid://dsoiblpo7jqw2" path="res://assets/sprites/smoke_ring.png" id="3_i7sjb"]
 [ext_resource type="Texture2D" uid="uid://ffmfgn5xmevw" path="res://assets/sprites/crosshair031.png" id="3_navgw"]
 [ext_resource type="Texture2D" uid="uid://vtbt7exk8fxc" path="res://assets/weapons/laser_cutter/LaserCutter_BeamOvercharged_SpriteSheet.png" id="4_38jru"]
-[ext_resource type="Texture2D" uid="uid://br108y5uuhec2" path="res://assets/sprites/gun_min.png" id="4_c327g"]
 [ext_resource type="Texture2D" uid="uid://bi77hneuy1meh" path="res://assets/sprites/crosshair014.png" id="4_mwmtq"]
 [ext_resource type="Texture2D" uid="uid://dsdws7nswh1ew" path="res://assets/sprites/crosshair131.png" id="5_g187m"]
 [ext_resource type="Script" path="res://entities/player/ui.gd" id="6_p4qjh"]
 [ext_resource type="Texture2D" uid="uid://bwitmkbv1q1t0" path="res://assets/weapons/laser_cutter/hold.png" id="8_ul435"]
 [ext_resource type="PackedScene" uid="uid://cyfvnl8opkay5" path="res://ui/pause_menu.tscn" id="9_ew8xj"]
+[ext_resource type="Texture2D" uid="uid://cd81urps5xc4q" path="res://assets/sprites/ui wapon.png" id="10_b2wfp"]
+[ext_resource type="Texture2D" uid="uid://byqpa5c2j5ecc" path="res://assets/sprites/ui weapon fill1.png" id="11_7of6j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_wcpcf"]
 radius = 0.25
@@ -269,22 +269,22 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvqyr"]
-bg_color = Color(0.89, 0.89, 0.89, 0.14902)
-border_width_left = 8
-border_width_top = 8
-border_color = Color(0.664351, 0.692513, 0.688966, 1)
-corner_radius_top_left = 1024
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_laq3y"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 8
-border_width_top = 8
-border_color = Color(0.664351, 0.692513, 0.688966, 1)
-corner_radius_top_left = 1024
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05w45"]
+texture = ExtResource("10_b2wfp")
 
 [sub_resource type="LabelSettings" id="LabelSettings_0rhmy"]
-font_size = 128
+font_size = 64
+font_color = Color(0.603922, 0.984314, 0.662745, 1)
+
+[sub_resource type="Gradient" id="Gradient_sc7ks"]
+offsets = PackedFloat32Array(0, 0.00352113, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.603922, 0.984314, 0.662745, 1, 0.603922, 0.984314, 0.662745, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dm0bk"]
+gradient = SubResource("Gradient_sc7ks")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jbt73"]
+texture = ExtResource("11_7of6j")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_h3c4q")
@@ -323,102 +323,20 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -6.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_p4qjh")
 
 [node name="WeaponSprite" type="AnimatedSprite2D" parent="UI"]
 texture_filter = 1
-position = Vector2(575.5, 325.5)
-scale = Vector2(2.39792, 2.38889)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_xfd6l")
 animation = &"overcharged"
 frame = 25
 frame_progress = 1.0
-
-[node name="Gun" type="Control" parent="UI"]
-layout_mode = 1
-anchor_left = 0.9
-anchor_top = 0.83
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 3
-
-[node name="Cooldown_bar" type="TextureProgressBar" parent="UI/Gun"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-max_value = 1.0
-step = 0.1
-value = 1.0
-fill_mode = 5
-radial_fill_degrees = 90.0
-nine_patch_stretch = true
-texture_progress = ExtResource("3_i7sjb")
-
-[node name="Bg_panel" type="Panel" parent="UI/Gun"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.43323e-05
-offset_top = 1.14441e-05
-offset_right = 3.05176e-05
-offset_bottom = 1.52588e-05
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fvqyr")
-
-[node name="Bg_panel2" type="Panel" parent="UI/Gun"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.35
-anchor_top = 0.35
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 3.43323e-05
-offset_top = 1.14441e-05
-offset_right = 3.05176e-05
-offset_bottom = 1.52588e-05
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_laq3y")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Gun"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.4
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_c327g")
-region_rect = Rect2(-80, -568, 2000, 2000)
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
-[node name="Ammo_txt" type="Label" parent="UI/Gun"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -73.0
-offset_top = -175.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "6"
-label_settings = SubResource("LabelSettings_0rhmy")
+centered = false
 
 [node name="Reticule" type="Control" parent="UI"]
 layout_mode = 1
@@ -449,6 +367,60 @@ texture = ExtResource("4_mwmtq")
 [node name="Pause_menu" parent="UI" instance=ExtResource("9_ew8xj")]
 visible = false
 layout_mode = 1
+
+[node name="Weaponpanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.772
+anchor_top = 0.75
+anchor_right = 0.959
+anchor_bottom = 0.95
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_05w45")
+
+[node name="Ammo_txt" type="Label" parent="UI/Weaponpanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.968
+offset_top = -69.76
+offset_right = 25.032
+offset_bottom = 18.24
+grow_horizontal = 0
+grow_vertical = 0
+text = "6"
+label_settings = SubResource("LabelSettings_0rhmy")
+
+[node name="Cooldown_bar" type="TextureProgressBar" parent="UI/Weaponpanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = 1.08
+anchor_right = 1.0
+anchor_bottom = 1.1
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 1.0
+step = 0.1
+value = 1.0
+radial_fill_degrees = 90.0
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_dm0bk")
+
+[node name="FillPanel" type="Panel" parent="UI/Weaponpanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jbt73")
 
 [connection signal="timeout" from="ReloadDelay" to="." method="_on_reload_delay_timeout"]
 [connection signal="animation_finished" from="UI/WeaponSprite" to="UI" method="_on_weapon_sprite_animation_finished"]
